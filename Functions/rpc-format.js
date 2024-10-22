@@ -25,7 +25,7 @@ function removeMarkdownForIgnore(input) {
   }
 
   const regexObj = new RegExp('\\[[^\\]]*\\]');
-  
+
   const output = input.replace(regexObj, '').trim();
 
   return output;
@@ -57,7 +57,7 @@ export async function format(status, changedFiles) {
       ({ details, state } = activityCache);
       image = activityCache.largeImageKey;
     }
-  } 
+  }
 
   // If it's a movie
   else if (meta.genre === 'movie' && meta.title && movieApiKey !== '' && changedFiles) {
@@ -67,7 +67,7 @@ export async function format(status, changedFiles) {
     ({ details, state } = activityCache);
     image = activityCache.largeImageKey;
   }
-  
+
   // If it's a music video
   else if (meta.artist) {
     const musicResult = await handleMusic(meta, state);
@@ -78,7 +78,7 @@ export async function format(status, changedFiles) {
     state = meta.now_playing || 'Stream';
     details = meta.filename;
   }
-  
+
   else if (autoOMDB) {
     if (changedFiles) {
       const result = await searchAll(meta, state);
@@ -110,7 +110,7 @@ export async function format(status, changedFiles) {
     details: details,
     largeImageKey: image,
     smallImageKey: setSmallImageKey(status),
-    smallImageText: `Volume: ${Math.round(status.volume / 2.56)}%`,
+    smallImageText: meta.description,
     instance: true,
     partySize: partySize,
     partyMax: partyMax,
