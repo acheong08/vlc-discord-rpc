@@ -110,7 +110,7 @@ export async function format(status, changedFiles) {
     details: details,
     largeImageKey: image,
     smallImageKey: setSmallImageKey(status),
-    smallImageText: meta.description || `Volume: ${Math.round(status.volume / 2.56)}%`,
+    smallImageText: meta.description || meta.filename || `Volume: ${Math.round(status.volume / 2.56)}%`,
     instance: true,
     partySize: partySize,
     partyMax: partyMax,
